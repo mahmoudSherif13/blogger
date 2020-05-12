@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
     include ArticlesHelper
-
+    before_action :require_login, except: [:show, :index]
     def index
         @articles = Article.all
     end
@@ -39,5 +39,4 @@ class ArticlesController < ApplicationController
         flash.notice = "Article #{@article.title} updated!"
         redirect_to article_path(@article)
     end
-
 end
