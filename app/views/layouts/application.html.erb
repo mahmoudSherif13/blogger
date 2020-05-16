@@ -10,7 +10,6 @@
   </head>
 
   <body>
-    <p class="flash"><%= flash.notice %></p>
     <%= yield %>
     <hr>
       <h6>
@@ -21,5 +20,10 @@
           <%= link_to "(login)", login_path %>
         <% end %>
       </h6>
+      <p>
+        <% flash.each do |key, value| %>
+          <%= content_tag :p, value, class: "flash" %>
+        <% end %>
+      </p>
   </body>
 </html>
