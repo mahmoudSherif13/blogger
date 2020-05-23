@@ -1,5 +1,5 @@
 <div>
     <p>Posted <%= distance_of_time_in_words(Time.now(), comment.created_at) %> later</p>
-    <h6>Comment By <%= comment.author_name%></h6>
+    <h6>Comment By <%= link_to  comment.author.username, author_path(comment.author) %></h6>
     <p><%=comment.body%></p>
 </div>
