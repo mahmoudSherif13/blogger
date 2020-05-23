@@ -7,6 +7,10 @@
   <%end%>
 </p>
 
+<p>
+  Posted by <%= link_to @article.author.username, author_path( @article.author ) %>
+</p>
+
 <p>Posted <%= distance_of_time_in_words(Time.now(), @article.created_at) %> later</p>
 
 <p><%= link_to "<< back", articles_path %></p>
