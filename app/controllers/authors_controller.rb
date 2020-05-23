@@ -1,7 +1,6 @@
 class AuthorsController < ApplicationController
   before_action :set_author, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:create, :new]
-
   before_action :check_if_cur_author, only: [:edit, :update, :destroy]
 
   # GET /authors
@@ -83,11 +82,6 @@ class AuthorsController < ApplicationController
     end
 
     def check_if_cur_author
-      if(!logged_in?)
-        flash[:error] = "you must be logged in to do this"
-        redirect_to login_path
-        return false
-      end
       if(current_user.id != params[:id].to_i)
         flash[:error] = "you are not authorized to do this action"
         redirect_back(fallback_location: root_path)

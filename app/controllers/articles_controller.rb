@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
     include ArticlesHelper
     before_action :require_login, except: [:show, :index]
+    before_action :check_if_cur_author , only: [:edit, :update, :destroy]
     def index
         @articles = Article.all
     end
@@ -40,4 +41,13 @@ class ArticlesController < ApplicationController
         flash.notice = "Article #{@article.title} updated!"
         redirect_to article_path(@article)
     end
+
+    private
+    def check_if_cur_author
+        if(current_user.id != params[:id].to_i)
+          flash[:error] = "you are not authorized to do this action"
+          redirect_back(fallback_location: root_path)
+          return false
+        end
+      end
 end

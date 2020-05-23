@@ -14,9 +14,9 @@
 <p>Posted <%= distance_of_time_in_words(Time.now(), @article.created_at) %> later</p>
 
 <p><%= link_to "<< back", articles_path %></p>
-<% if logged_in? %>
-<p><%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}%></p>
-<p><%= link_to "edit", edit_article_path(@article)%></p>
+<% if logged_in? and current_user == @article.author %>
+  <p><%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"}%></p>
+  <p><%= link_to "edit", edit_article_path(@article)%></p>
 <% end %>
 <p>
   Tags:

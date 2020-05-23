@@ -19,6 +19,7 @@
   <strong>Password confirmation:</strong>
   <%= @author.password_confirmation %>
 </p>
-
-<%= link_to 'Edit', edit_author_path(@author) %> |
+<% if current_user == @author %>
+  <%= link_to 'Edit', edit_author_path(@author) %> |
+<% end %>
 <%= link_to 'Back', authors_path %>
