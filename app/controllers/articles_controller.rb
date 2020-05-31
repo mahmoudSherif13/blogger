@@ -42,6 +42,20 @@ class ArticlesController < ApplicationController
         redirect_to article_path(@article)
     end
 
+    def up_vote
+        @article = Article.find(params[:article_id])
+        @article.up_votes += 1
+        @article.save()
+        redirect_to article_path(@article)
+    end
+
+    def down_vote
+        @article = Article.find(params[:article_id])
+        @article.down_votes += 1
+        @article.save()
+        redirect_to article_path(@article)
+    end
+
     private
     def check_if_cur_author
         if(current_user.id != params[:id].to_i)

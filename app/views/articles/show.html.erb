@@ -25,6 +25,16 @@
   <% end %>
 </p>
 
+<p>
+    up votes : <%= @article.up_votes %><br/>
+    down votes : <%= @article.down_votes %>
+</p>
+<p>
+  <%= link_to "up vote", article_up_vote_path(@article), method: :put %><br/>
+  <%= link_to "down vote", article_down_vote_path(@article), method: :put %>
+</p>
+
+
 <h3>Comments (<%= @article.comments.size%>) </h3>
 
 <%= render partial: 'articles/comment', collection: @article.comments %>
