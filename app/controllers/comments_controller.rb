@@ -9,5 +9,19 @@ class CommentsController < ApplicationController
         @comment.save()
         redirect_to article_path(@comment.article)
     end
+
+    def up_vote
+        @comment = Comment.find(params[:comment_id])
+        @comment.up_votes += 1
+        @comment.save()
+        redirect_to article_path(@comment.article)
+    end
     
+    def down_vote
+        @comment = Comment.find(params[:comment_id])
+        @comment.down_votes += 1
+        @comment.save()
+        redirect_to article_path(@comment.article)
+    end
+
 end

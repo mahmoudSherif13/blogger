@@ -1,5 +1,9 @@
 <div>
     <p>Posted <%= distance_of_time_in_words(Time.now(), comment.created_at) %> later</p>
     <h6>Comment By <%= link_to  comment.author.username, author_path(comment.author) %></h6>
+    <p>up_votes: <%= comment.up_votes %></p>
+    <p>down_votes: <%= comment.down_votes %></p>
+    <p><%= link_to "up vote",  article_comment_up_vote_path(comment.article, comment), method: "put" %></p>
+    <p><%= link_to "down vote",  article_comment_down_vote_path(comment.article, comment), method: "put" %></p>
     <p><%=comment.body%></p>
 </div>

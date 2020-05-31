@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   root to: 'articles#index'
   resources :articles do
-    resources :comments
+    resources :comments do
+      put 'up_vote' => 'comments#up_vote'
+      put 'down_vote' => 'comments#down_vote'
+    end
   end
   resources :tags
   
@@ -11,4 +14,5 @@ Rails.application.routes.draw do
   get 'login'  => 'author_sessions#new'
   get 'logout' => 'author_sessions#destroy'
   get 'register' => 'authors#new'
+  
 end
