@@ -37,5 +37,5 @@
 
 <h3>Comments (<%= @article.comments.size%>) </h3>
 
-<%= render partial: 'articles/comment', collection: @article.comments %>
+<%= render partial: 'articles/comment', collection: @article.comments.order(up_votes: :desc) %>
 <%= render partial: 'comments/form' %>
